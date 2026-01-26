@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan | Full Stack Developer Portfolio</title>
+    <meta name="description" content="Portfolio of Alex Morgan, a full stack developer showcasing projects, skills, and technologies used.">
+    <meta name="keywords" content="developer, portfolio, web development, full stack, projects, JavaScript, React, Node.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        secondary: "#1e40af",
+                        accent: "#f59e0b",
+                        dark: "#1f2937",
+                        light: "#f8fafc"
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .tech-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-bar {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-light font-sans text-dark">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary hover:text-secondary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('hero')">
+                    <span class="text-accent">&lt;</span>AlexMorgan<span class="text-accent">/&gt;</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('about')">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('skills')">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('projects')">Projects</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact')">Contact</a>
+                </div>
+                
+                <button class="md:hidden text-gray-600 hover:text-primary" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="#about" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('about'); toggleMobileMenu()">About</a>
+                <a href="#skills" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('skills'); toggleMobileMenu()">Skills</a>
+                <a href="#projects" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('projects'); toggleMobileMenu()">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact'); toggleMobileMenu()">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        Hi, I'm <span class="text-primary">Alex Morgan</span>
+                        <br>
+                        <span class="text-accent">Full Stack Developer</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        I build exceptional digital experiences that are fast, accessible, visually appealing, and responsive.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-secondary transition-colors duration-200 shadow-lg hover:shadow-xl" onclick="event.preventDefault(); scrollToSection('projects')">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact')">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/5 relative">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/400?random=1" 
+                            alt="Alex Morgan - Full Stack Developer" 
+                            class="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
+                            loading="lazy"
+                        >
+                        <div class="absolute -bottom-4 -right-4 bg-accent text-white p-4 rounded-lg shadow-lg">
+                            <div class="text-2xl font-bold">5+</div>
+                            <div class="text-sm">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-light rounded-2xl p-8 shadow-lg">
+                    <p class="text-lg text-gray-700 mb-6">
+                        I'm a passionate full-stack developer with over 5 years of experience building web applications. 
+                        I specialize in creating efficient, scalable solutions using modern technologies.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        My journey started with front-end development, but I quickly expanded to back-end technologies 
+                        to understand the complete picture of web development. I believe in writing clean, maintainable 
+                        code and following best practices.
+                    </p>
+                    <p class="text-lg text-gray-700">
+                        When I'm not coding, you can find me contributing to open-source projects, learning new technologies, 
+                        or sharing knowledge through blog posts and tutorials.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Technologies Section -->
+    <section id="skills" class="py-16 bg-gradient-to-b from-light to-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Skills & Technologies</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Frontend Skills -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-code text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Frontend</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">React</span>
+                                <span class="text-primary font-bold">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full skill-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Vue.js</span>
+                                <span class="text-primary font-bold">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">TypeScript</span>
+                                <span class="text-primary font-bold">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full skill-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backend Skills -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-secondary/10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-server text-secondary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Backend</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Node.js</span>
+                                <span class="text-secondary font-bold">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-secondary h-2 rounded-full skill-bar" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Python/Django</span>
+                                <span class="text-secondary font-bold">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-secondary h-2 rounded-full skill-bar" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">PostgreSQL</span>
+                                <span class="text-secondary font-bold">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-secondary h-2 rounded-full skill-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Others -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-accent/10 p-3 rounded-lg mr-4">
+                            <i class="fas fa-tools text-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Tools & Others</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Docker</span>
+                                <span class="text-accent font-bold">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">AWS</span>
+                                <span class="text-accent font-bold">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full skill-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Git/GitHub</span>
+                                <span class="text-accent font-bold">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full skill-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technology Tags -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center mb-8">Technology Stack</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="tech-tag bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">JavaScript</span>
+                    <span class="tech-tag bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">TypeScript</span>
+                    <span class="tech-tag bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full font-medium">React</span>
+                    <span class="tech-tag bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium">Vue.js</span>
+                    <span class="tech-tag bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-medium">Node.js</span>
+                    <span class="tech-tag bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-medium">Python</span>
+                    <span class="tech-tag bg-red-100 text-red-800 px-4 py-2 rounded-full font-medium">Django</span>
+                    <span class="tech-tag bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-medium">PostgreSQL</span>
+                    <span class="tech-tag bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium">MongoDB</span>
+                    <span class="tech-tag bg-pink-100 text-pink-800 px-4 py-2 rounded-full font-medium">Docker</span>
+                    <span class="tech-tag bg-orange-100 text-orange-800 px-4 py-2 rounded-full font-medium">AWS</span>
+                    <span class="tech-tag bg-gray-100 text-gray-800 px-4 py-2 rounded-full font-medium">Git</span>
+                    <span class="tech-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-full font-medium">Tailwind CSS</span>
+                    <span class="tech-tag bg-rose-100 text-rose-800 px-4 py-2 rounded-full font-medium">GraphQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Featured Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/600/400?random=2" 
+                            alt="E-commerce Platform Dashboard" 
+                            class="w-full h-48 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Full Stack</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">
+                            A complete e-commerce solution with user authentication, product management, shopping cart, and payment integration.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React</span>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">Node.js</span>
+                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">PostgreSQL</span>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Stripe API</span>
+                                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Tailwind CSS</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(1)">
+                                <i class="fas fa-external-link-alt mr-2"></i> View Details
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/600/400?random=3" 
+                            alt="Task Management Application" 
+                            class="w-full h-48 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Frontend</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
+                        <p class="text-gray-600 mb-4">
+                            A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-1 rounded">Vue.js</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">TypeScript</span>
+                                <span class="text-xs bg-rose-100 text-rose-800 px-2 py-1 rounded">GraphQL</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">MongoDB</span>
+                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Socket.io</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(2)">
+                                <i class="fas fa-external-link-alt mr-2"></i> View Details
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/600/400?random=4" 
+                            alt="Analytics Dashboard" 
+                            class="w-full h-48 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Backend</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4">
+                            A data visualization dashboard that processes large datasets and presents insights through interactive charts and graphs.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Python</span>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Django</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">D3.js</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Docker</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Redis</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(3)">
+                                <i class="fas fa-external-link-alt mr-2"></i> View Details
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/600/400?random=5" 
+                            alt="Mobile Banking App" 
+                            class="w-full h-48 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Full Stack</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Mobile Banking App</h3>
+                        <p class="text-gray-600 mb-4">
+                            A secure mobile banking application with biometric authentication, transaction history, and bill payment features.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React Native</span>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">Express.js</span>
+                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">MySQL</span>
+                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">AWS Lambda</span>
+                                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">JWT</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(4)">
+                                <i class="fas fa-external-link-alt mr-2"></i> View Details
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/600/400?random=6" 
+                            alt="Content Management System" 
+                            class="w-full h-48 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Backend</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">CMS for Publishers</h3>
+                        <p class="text-gray-600 mb-4">
+                            A custom content management system designed for publishing companies with multi-user roles and workflow management.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Django</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React</span>
+                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">MongoDB</span>
+                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Docker</span>
+                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Nginx</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(5)">
+                                <i class="fas fa-external-link-alt mr-2"></i> View Details
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative">
+                        <img 
+                            src="https://picsum.photos/600/400?random=7" 
+                            alt="Real Estate Platform" 
+                            class="w-full h-48 object-cover"
+                            loading="lazy"
+                        >
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Frontend</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Real Estate Platform</h3>
+                        <p class="text-gray-600 mb-4">
+                            A property listing platform with advanced search filters, virtual tours, and agent management system.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-1 rounded">Vue.js</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">TypeScript</span>
+                                <span class="text-xs bg-rose-100 text-rose-800 px-2 py-1 rounded">GraphQL</span>
+                                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Tailwind CSS</span>
+                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Mapbox API</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(6)">
+                                <i class="fas fa-external-link-alt mr-2"></i> View Details
+                            </a>
+                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-primary hover:text-secondary font-bold text-lg" onclick="event.preventDefault(); loadMoreProjects()">
+                    <span>View All Projects</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="animate-slide-up">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Email</h4>
+                                    <p class="text-gray-600">alex.morgan@example.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-secondary/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone text-secondary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Phone</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-accent/10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Location</h4>
+                                    <p class="text-gray-600">San Francisco, California</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-lg mb-4">Connect with me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-black transition-colors duration-200" onclick="event.preventDefault()">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="#" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors duration-200" onclick="event.preventDefault()">
+                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-500 transition-colors duration-200" onclick="event.preventDefault()">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 text-white p-3 rounded-lg hover:bg-red-700 transition-colors duration-200" onclick="event.preventDefault()">
+                                    <i class="fab fa-youtube text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="animate-slide-up">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
+                            
+                            <form id="contactForm" onsubmit="event.preventDefault(); handleContactForm()">
+                                <div class="space-y-6">
+                                    <div>
+                                        <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                                        <input 
+                                            type="text" 
+                                            id="name" 
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                            placeholder="Your name"
+                                            required
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                            placeholder="your.email@example.com"
+                                            required
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                        <input 
+                                            type="text" 
+                                            id="subject" 
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                            placeholder="Project inquiry or question"
+                                            required
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                        <textarea 
+                                            id="message" 
+                                            rows="5"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                                            placeholder="Tell me about your project or ask a question..."
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    
+                                    <button 
+                                        type="submit" 
+                                        class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-secondary transition-colors duration-200 shadow-lg hover:shadow-xl"
+                                    >
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <div id="formMessage" class="mt-4 hidden p-4 rounded-lg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-white hover:text-accent transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('hero')">
+                        <span class="text-accent">&lt;</span>AlexMorgan<span class="text-accent">/&gt;</span>
+                    </a>
+                    <p class="text-gray-400 mt-2">Building digital experiences since 2018</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('about')">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('skills')">Skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('projects')">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact')">Contact</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Alex Morgan. All rights reserved.</p>
+                <p class="mt-2">Built with <i class="fas fa-heart text-red-500"></i> and modern web technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-6">
+                    <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+                    <button onclick="closeProjectModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div id="modalContent" class="space-y-6">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button onclick="closeProjectModal()" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define all data at the beginning
+        const projectsData = [
+            {
+                "id": 1,
+                "title": "E-commerce Platform",
+                "category": "Full Stack",
+                "description": "A complete e-commerce solution with user authentication, product management, shopping cart, and payment integration.",
+                "fullDescription": "This e-commerce platform was built to handle thousands of products and users. It includes features like user authentication with JWT, product search and filtering, shopping cart functionality, order management, and integration with Stripe for payments. The admin dashboard allows for inventory management, order tracking, and sales analytics.",
+                "technologies": ["React", "Node.js", "PostgreSQL", "Stripe API", "Tailwind CSS", "Redux", "Express.js"],
+                "features": [
+                    "User authentication and authorization",
+                    "Product catalog with search and filters",
+                    "Shopping cart and checkout process",
+                    "Payment integration with Stripe",
+                    "Admin dashboard for management",
+                    "Order tracking and history",
+                    "Responsive design for all devices"
+                ],
+                "image": "https://picsum.photos/600/400?random=2"
+            },
+            {
+                "id": 2,
+                "title": "Task Management App",
+                "category": "Frontend",
+                "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+                "fullDescription": "This task management application enables teams to collaborate effectively on projects. It features real-time updates using WebSockets, drag-and-drop functionality for organizing tasks, team management with different permission levels, and comprehensive project tracking with deadlines and priorities.",
+                "technologies": ["Vue.js", "TypeScript", "GraphQL", "MongoDB", "Socket.io", "Vuex", "Vuetify"],
+                "features": [
+                    "Real-time collaboration with WebSockets",
+                    "Drag-and-drop task organization",
+                    "Team management with roles",
+                    "Project timelines and deadlines",
+                    "File attachments and comments",
+                    "Notifications and reminders",
+                    "Progress tracking and reporting"
+                ],
+                "image": "https://picsum.photos/600/400?random=3"
+            },
+            {
+                "id": 3,
+                "title": "Analytics Dashboard",
+                "category": "Backend",
+                "description": "A data visualization dashboard that processes large datasets and presents insights through interactive charts and graphs.",
+                "fullDescription": "This analytics dashboard processes millions of data points to provide actionable insights through interactive visualizations. It includes real-time data processing, custom report generation, predictive analytics using machine learning models, and export functionality for reports in multiple formats.",
+                "technologies": ["Python", "Django", "D3.js", "Docker", "Redis", "Celery", "Pandas", "Scikit-learn"],
+                "features": [
+                    "Real-time data processing and visualization",
+                    "Interactive charts and graphs",
+                    "Custom report generation",
+                    "Predictive analytics with ML models",
+                    "Data export in multiple formats",
+                    "User-defined dashboards",
+                    "Scheduled report generation"
+                ],
+                "image": "https://picsum.photos/600/400?random=4"
+            },
+            {
+                "id": 4,
+                "title": "Mobile Banking App",
+                "category": "Full Stack",
+                "description": "A secure mobile banking application with biometric authentication, transaction history, and bill payment features.",
+                "fullDescription": "This mobile banking application provides a secure platform for managing finances on the go. It includes biometric authentication (fingerprint and face ID), transaction history with categorization, bill payment scheduling, money transfers between accounts, and financial goal tracking with insights.",
+                "technologies": ["React Native", "Express.js", "MySQL", "AWS Lambda", "JWT", "Push Notifications", "Plaid API"],
+                "features": [
+                    "Biometric authentication (fingerprint/face ID)",
+                    "Transaction history and categorization",
+                    "Bill payment and scheduling",
+                    "Money transfers between accounts",
+                    "Financial goal tracking",
+                    "Push notifications for transactions",
+                    "Secure encryption for all data"
+                ],
+                "image": "https://picsum.photos/600/400?random=5"
+            },
+            {
+                "id": 5,
+                "title": "CMS for Publishers",
+                "category": "Backend",
+                "description": "A custom content management system designed for publishing companies with multi-user roles and workflow management.",
+                "fullDescription": "This content management system was specifically designed for publishing companies to manage their editorial workflow. It includes multi-user roles with different permissions, content scheduling and publishing, version control for articles, media library management, and analytics for content performance.",
+                "technologies": ["Django", "React", "MongoDB", "Docker", "Nginx", "Elasticsearch", "Redis"],
+                "features": [
+                    "Multi-user roles and permissions",
+                    "Content scheduling and publishing",
+                    "Version control for articles",
+                    "Media library management",
+                    "Content performance analytics",
+                    "SEO optimization tools",
+                    "Workflow management system"
+                ],
+                "image": "https://picsum.photos/600/400?random=6"
+            },
+            {
+                "id": 6,
+                "title": "Real Estate Platform",
+                "category": "Frontend",
+                "description": "A property listing platform with advanced search filters, virtual tours, and agent management system.",
+                "fullDescription": "This real estate platform connects buyers, sellers, and agents through an intuitive interface. It features advanced property search with filters, virtual tour integration using 360-degree photos, agent profiles and ratings, property comparison tools, and mortgage calculator integration.",
+                "technologies": ["Vue.js", "TypeScript", "GraphQL", "Tailwind CSS", "Mapbox API", "Firebase", "Stripe"],
+                "features": [
+                    "Advanced property search with filters",
+                    "Virtual tours with 360-degree photos",
+                    "Agent profiles and ratings",
+                    "Property comparison tools",
+                    "Mortgage calculator",
+                    "Favorite properties list",
+                    "Email notifications for new listings"
+                ],
+                "image": "https://picsum.photos/600/400?random=7"
+            }
+        ];
+
+        const skillsData = {
+            "frontend": [
+                { "name": "React", "level": 95 },
+                { "name": "Vue.js", "level": 85 },
+                { "name": "TypeScript", "level": 90 },
+                { "name": "JavaScript", "level": 95 },
+                { "name": "HTML/CSS", "level": 98 }
+            ],
+            "backend": [
+                { "name": "Node.js", "level": 92 },
+                { "name": "Python/Django", "level": 88 },
+                { "name": "PostgreSQL", "level": 90 },
+                { "name": "MongoDB", "level": 85 },
+                { "name": "REST APIs", "level": 95 }
+            ],
+            "tools": [
+                { "name": "Docker", "level": 85 },
+                { "name": "AWS", "level": 80 },
+                { "name": "Git/GitHub", "level": 95 },
+                { "name": "CI/CD", "level": 85 },
+                { "name": "Testing", "level": 90 }
+            ]
+        };
+
+        // Navigation functions
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 80,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById("mobileMenu");
+            mobileMenu.classList.toggle("hidden");
+        }
+
+        // Project modal functions
+        function showProjectDetails(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            if (!project) return;
+
+            const modal = document.getElementById("projectModal");
+            const title = document.getElementById("modalTitle");
+            const content = document.getElementById("modalContent");
+
+            title.textContent = project.title;
+            
+            content.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <img 
+                            src="${project.image}" 
+                            alt="${project.title}" 
+                            class="w-full rounded-lg shadow-lg"
+                            loading="lazy"
+                        >
+                        <div class="mt-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-sm font-medium ${
+                                project.category === "Full Stack" ? "bg-primary text-white" :
+                                project.category === "Frontend" ? "bg-accent text-white" :
+                                "bg-secondary text-white"
+                            }">
+                                ${project.category}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold mb-2">Project Description</h4>
+                            <p class="text-gray-700">${project.fullDescription}</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg font-bold mb-2">Key Features</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                ${project.features.map(feature => `<li>${feature}</li>`).join("")}
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-bold mb-2">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${project.technologies.map(tech => `
+                                    <span class="text-xs bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
+                                        ${tech}
+                                    </span>
+                                `).join("")}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById("projectModal");
+            modal.classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        // Contact form handling
+        function handleContactForm() {
+            const form = document.getElementById("contactForm");
+            const formMessage = document.getElementById("formMessage");
+            
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value;
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                showFormMessage("Please fill in all fields.", "error");
+                return;
+            }
+            
+            // Simulate form submission
+            showFormMessage("Thank you for your message! I'll get back to you soon.", "success");
+            
+            // Reset form
+            form.reset();
+            
+            // Scroll to top of form
+            form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function showFormMessage(text, type) {
+            const formMessage = document.getElementById("formMessage");
+            formMessage.textContent = text;
+            formMessage.className = "mt-4 p-4 rounded-lg";
+            
+            if (type === "success") {
+                formMessage.classList.add("bg-green-100", "text-green-800");
+            } else {
+                formMessage.classList.add("bg-red-100", "text-red-800");
+            }
+            
+            formMessage.classList.remove("hidden");
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add("hidden");
+            }, 5000);
+        }
+
+        // Load more projects function
+        function loadMoreProjects() {
+            alert("In a real application, this would load more projects from a database or API.");
+        }
+
+        // Initialize animations on scroll
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-fade-in");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all project cards and sections
+            document.querySelectorAll(".project-card, section").forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            initAnimations();
+            
+            // Close modal on escape key
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape") {
+                    closeProjectModal();
+                }
+            });
+            
+            // Close modal on outside click
+            document.getElementById("projectModal").addEventListener("click", function(e) {
+                if (e.target === this) {
+                    closeProjectModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
