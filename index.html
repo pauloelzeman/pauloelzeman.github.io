@@ -4,710 +4,806 @@
     <base target="_self">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Morgan | Full Stack Developer Portfolio</title>
-    <meta name="description" content="Portfolio of Alex Morgan, a full stack developer showcasing projects, skills, and technologies used.">
-    <meta name="keywords" content="developer, portfolio, web development, full stack, projects, JavaScript, React, Node.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Paulo Elzeman - Backend Software Engineer</title>
+    <meta name="description" content="Backend Software Engineer with 4+ years experience in C#/.NET, Java/Spring, microservices, and cloud integration">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#2563eb",
-                        secondary: "#1e40af",
-                        accent: "#f59e0b",
-                        dark: "#1f2937",
-                        light: "#f8fafc"
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'mono': ['Fira Code', 'monospace']
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.3s ease-out'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(10px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
-        
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --primary-dark: #0a0a0f;
+            --secondary-dark: #12121c;
+            --accent-blue: #2563eb;
+            --accent-cyan: #06b6d4;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-dark: #1e293b;
         }
         
-        .tech-tag {
-            transition: all 0.2s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .tech-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
         
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        .project-card:hover {
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: var(--secondary-dark);
+            border-radius: 0.75rem;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 0.75rem;
+            z-index: -1;
+        }
+        
+        .typing-animation {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid var(--accent-cyan);
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-cyan) }
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+        }
+        
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-icon:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.3));
         }
         
-        .skill-bar {
-            transition: width 1s ease-in-out;
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
         }
     </style>
 </head>
-<body class="min-h-screen bg-light font-sans text-dark">
+<body class="min-h-screen">
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
-        <nav class="container mx-auto px-4 py-4">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary-dark/95 backdrop-blur-sm border-b border-border-dark">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-primary hover:text-secondary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('hero')">
-                    <span class="text-accent">&lt;</span>AlexMorgan<span class="text-accent">/&gt;</span>
+                <a href="#hero" class="code-font text-xl font-bold text-white hover:text-accent-cyan transition-colors">
+                    Paulo<span class="text-accent-blue">.</span>Elzeman
                 </a>
                 
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('about')">About</a>
-                    <a href="#skills" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('skills')">Skills</a>
-                    <a href="#projects" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('projects')">Projects</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact')">Contact</a>
+                    <a href="#about" class="text-text-secondary hover:text-white transition-colors">Profile</a>
+                    <a href="#experience" class="text-text-secondary hover:text-white transition-colors">Experience</a>
+                    <a href="#projects" class="text-text-secondary hover:text-white transition-colors">Projects</a>
+                    <a href="#skills" class="text-text-secondary hover:text-white transition-colors">Stack</a>
+                    <a href="#github" class="text-text-secondary hover:text-white transition-colors">GitHub</a>
+                    <a href="#contact" class="text-text-secondary hover:text-white transition-colors">Contact</a>
                 </div>
                 
-                <button class="md:hidden text-gray-600 hover:text-primary" onclick="toggleMobileMenu()">
+                <button id="mobile-menu-btn" class="md:hidden text-text-secondary">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-3">
-                <a href="#about" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('about'); toggleMobileMenu()">About</a>
-                <a href="#skills" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('skills'); toggleMobileMenu()">Skills</a>
-                <a href="#projects" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('projects'); toggleMobileMenu()">Projects</a>
-                <a href="#contact" class="block py-2 text-gray-600 hover:text-primary transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact'); toggleMobileMenu()">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 bg-secondary-dark border-b border-border-dark">
+            <div class="flex flex-col space-y-4 p-6">
+                <a href="#about" class="text-text-secondary hover:text-white transition-colors">Profile</a>
+                <a href="#experience" class="text-text-secondary hover:text-white transition-colors">Experience</a>
+                <a href="#projects" class="text-text-secondary hover:text-white transition-colors">Projects</a>
+                <a href="#skills" class="text-text-secondary hover:text-white transition-colors">Stack</a>
+                <a href="#github" class="text-text-secondary hover:text-white transition-colors">GitHub</a>
+                <a href="#contact" class="text-text-secondary hover:text-white transition-colors">Contact</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-accent/5">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                        Hi, I'm <span class="text-primary">Alex Morgan</span>
-                        <br>
-                        <span class="text-accent">Full Stack Developer</span>
-                    </h1>
-                    <p class="text-xl text-gray-600 mb-8">
-                        I build exceptional digital experiences that are fast, accessible, visually appealing, and responsive.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-secondary transition-colors duration-200 shadow-lg hover:shadow-xl" onclick="event.preventDefault(); scrollToSection('projects')">
-                            View Projects
-                        </a>
-                        <a href="#contact" class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact')">
-                            Contact Me
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="md:w-2/5 relative">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/400?random=1" 
-                            alt="Alex Morgan - Full Stack Developer" 
-                            class="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
-                            loading="lazy"
-                        >
-                        <div class="absolute -bottom-4 -right-4 bg-accent text-white p-4 rounded-lg shadow-lg">
-                            <div class="text-2xl font-bold">5+</div>
-                            <div class="text-sm">Years Experience</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
-            
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-light rounded-2xl p-8 shadow-lg">
-                    <p class="text-lg text-gray-700 mb-6">
-                        I'm a passionate full-stack developer with over 5 years of experience building web applications. 
-                        I specialize in creating efficient, scalable solutions using modern technologies.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-6">
-                        My journey started with front-end development, but I quickly expanded to back-end technologies 
-                        to understand the complete picture of web development. I believe in writing clean, maintainable 
-                        code and following best practices.
-                    </p>
-                    <p class="text-lg text-gray-700">
-                        When I'm not coding, you can find me contributing to open-source projects, learning new technologies, 
-                        or sharing knowledge through blog posts and tutorials.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills & Technologies Section -->
-    <section id="skills" class="py-16 bg-gradient-to-b from-light to-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Skills & Technologies</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Frontend Skills -->
-                <div class="bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-primary/10 p-3 rounded-lg mr-4">
-                            <i class="fas fa-code text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Frontend</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">React</span>
-                                <span class="text-primary font-bold">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-primary h-2 rounded-full skill-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Vue.js</span>
-                                <span class="text-primary font-bold">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-primary h-2 rounded-full skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">TypeScript</span>
-                                <span class="text-primary font-bold">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-primary h-2 rounded-full skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Backend Skills -->
-                <div class="bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-secondary/10 p-3 rounded-lg mr-4">
-                            <i class="fas fa-server text-secondary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Backend</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Node.js</span>
-                                <span class="text-secondary font-bold">92%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full skill-bar" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Python/Django</span>
-                                <span class="text-secondary font-bold">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full skill-bar" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">PostgreSQL</span>
-                                <span class="text-secondary font-bold">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tools & Others -->
-                <div class="bg-white rounded-xl p-6 shadow-lg">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-accent/10 p-3 rounded-lg mr-4">
-                            <i class="fas fa-tools text-accent text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Tools & Others</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Docker</span>
-                                <span class="text-accent font-bold">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-accent h-2 rounded-full skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">AWS</span>
-                                <span class="text-accent font-bold">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-accent h-2 rounded-full skill-bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium">Git/GitHub</span>
-                                <span class="text-accent font-bold">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-accent h-2 rounded-full skill-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Technology Tags -->
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold text-center mb-8">Technology Stack</h3>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <span class="tech-tag bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">JavaScript</span>
-                    <span class="tech-tag bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">TypeScript</span>
-                    <span class="tech-tag bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full font-medium">React</span>
-                    <span class="tech-tag bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium">Vue.js</span>
-                    <span class="tech-tag bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full font-medium">Node.js</span>
-                    <span class="tech-tag bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-medium">Python</span>
-                    <span class="tech-tag bg-red-100 text-red-800 px-4 py-2 rounded-full font-medium">Django</span>
-                    <span class="tech-tag bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-medium">PostgreSQL</span>
-                    <span class="tech-tag bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium">MongoDB</span>
-                    <span class="tech-tag bg-pink-100 text-pink-800 px-4 py-2 rounded-full font-medium">Docker</span>
-                    <span class="tech-tag bg-orange-100 text-orange-800 px-4 py-2 rounded-full font-medium">AWS</span>
-                    <span class="tech-tag bg-gray-100 text-gray-800 px-4 py-2 rounded-full font-medium">Git</span>
-                    <span class="tech-tag bg-teal-100 text-teal-800 px-4 py-2 rounded-full font-medium">Tailwind CSS</span>
-                    <span class="tech-tag bg-rose-100 text-rose-800 px-4 py-2 rounded-full font-medium">GraphQL</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Featured Projects</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/600/400?random=2" 
-                            alt="E-commerce Platform Dashboard" 
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        >
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Full Stack</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
-                        <p class="text-gray-600 mb-4">
-                            A complete e-commerce solution with user authentication, product management, shopping cart, and payment integration.
-                        </p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">Node.js</span>
-                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">PostgreSQL</span>
-                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Stripe API</span>
-                                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Tailwind CSS</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(1)">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Details
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/600/400?random=3" 
-                            alt="Task Management Application" 
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        >
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Frontend</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
-                        <p class="text-gray-600 mb-4">
-                            A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.
-                        </p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-1 rounded">Vue.js</span>
-                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">TypeScript</span>
-                                <span class="text-xs bg-rose-100 text-rose-800 px-2 py-1 rounded">GraphQL</span>
-                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">MongoDB</span>
-                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Socket.io</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(2)">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Details
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/600/400?random=4" 
-                            alt="Analytics Dashboard" 
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        >
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Backend</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
-                        <p class="text-gray-600 mb-4">
-                            A data visualization dashboard that processes large datasets and presents insights through interactive charts and graphs.
-                        </p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Python</span>
-                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Django</span>
-                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">D3.js</span>
-                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Docker</span>
-                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Redis</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(3)">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Details
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/600/400?random=5" 
-                            alt="Mobile Banking App" 
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        >
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">Full Stack</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Mobile Banking App</h3>
-                        <p class="text-gray-600 mb-4">
-                            A secure mobile banking application with biometric authentication, transaction history, and bill payment features.
-                        </p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React Native</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded">Express.js</span>
-                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">MySQL</span>
-                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">AWS Lambda</span>
-                                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">JWT</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(4)">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Details
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/600/400?random=6" 
-                            alt="Content Management System" 
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        >
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">Backend</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">CMS for Publishers</h3>
-                        <p class="text-gray-600 mb-4">
-                            A custom content management system designed for publishing companies with multi-user roles and workflow management.
-                        </p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Django</span>
-                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React</span>
-                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">MongoDB</span>
-                                <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Docker</span>
-                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Nginx</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(5)">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Details
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 6 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative">
-                        <img 
-                            src="https://picsum.photos/600/400?random=7" 
-                            alt="Real Estate Platform" 
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        >
-                        <div class="absolute top-4 right-4">
-                            <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium">Frontend</span>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Real Estate Platform</h3>
-                        <p class="text-gray-600 mb-4">
-                            A property listing platform with advanced search filters, virtual tours, and agent management system.
-                        </p>
-                        
-                        <div class="mb-6">
-                            <h4 class="font-medium mb-2 text-gray-700">Technologies Used:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-1 rounded">Vue.js</span>
-                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">TypeScript</span>
-                                <span class="text-xs bg-rose-100 text-rose-800 px-2 py-1 rounded">GraphQL</span>
-                                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Tailwind CSS</span>
-                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Mapbox API</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <a href="#" class="text-primary hover:text-secondary font-medium flex items-center" onclick="event.preventDefault(); showProjectDetails(6)">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Details
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-primary" onclick="event.preventDefault()">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center text-primary hover:text-secondary font-bold text-lg" onclick="event.preventDefault(); loadMoreProjects()">
-                    <span>View All Projects</span>
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
-            
+    <section id="hero" class="min-h-screen grid-pattern pt-20">
+        <div class="container mx-auto px-6 py-20">
             <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <div class="inline-block px-4 py-2 rounded-full bg-accent-blue/10 border border-accent-blue/30 text-accent-blue code-font text-sm mb-6">
+                        <span class="pulse-dot">●</span> Available for Enterprise Backend Roles
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                        Paulo <span class="text-accent-cyan">Elzeman</span>
+                    </h1>
+                    
+                    <div class="mb-6">
+                        <h2 class="text-2xl md:text-3xl font-semibold text-text-secondary mb-2">
+                            <span class="typing-animation">Backend Software Engineer | .NET & Java</span>
+                        </h2>
+                        <p class="text-xl text-text-secondary">
+                            Enterprise Systems • Integrations • Microservices • Cloud
+                        </p>
+                    </div>
+                    
+                    <p class="text-lg text-text-secondary mb-10 max-w-2xl">
+                        Backend Developer with 4+ years experience in corporate systems, REST APIs, microservices, 
+                        platform integrations, and production support. Strong expertise in C#/.NET, Java/Spring, 
+                        databases, and cloud infrastructure.
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 mb-20">
+                    <a href="#projects" class="px-6 py-3 bg-accent-blue text-white rounded-lg hover:bg-accent-blue/90 transition-colors glow-effect">
+                        View Projects
+                    </a>
+                    <a href="#github" class="px-6 py-3 bg-transparent border border-border-dark text-white rounded-lg hover:bg-border-dark transition-colors">
+                        Explore GitHub
+                    </a>
+                    <a href="https://linkedin.com" class="px-6 py-3 bg-transparent border border-border-dark text-white rounded-lg hover:bg-border-dark transition-colors">
+                        <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                    </a>
+                    <a href="#contact" class="px-6 py-3 bg-transparent border border-border-dark text-white rounded-lg hover:bg-border-dark transition-colors">
+                        <i class="fas fa-envelope mr-2"></i> Contact
+                    </a>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-accent-blue to-accent-cyan rounded-lg blur opacity-20"></div>
+                    <div class="relative gradient-border p-8">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent-cyan mb-2">4+</div>
+                                <div class="text-sm text-text-secondary">Years Backend</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent-cyan mb-2">50+</div>
+                                <div class="text-sm text-text-secondary">APIs Built</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent-cyan mb-2">10+</div>
+                                <div class="text-sm text-text-secondary">Microservices</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent-cyan mb-2">24/7</div>
+                                <div class="text-sm text-text-secondary">Production Support</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Profile -->
+    <section id="about" class="py-20 bg-secondary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">Professional Profile</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
+                <div class="gradient-border p-8 mb-12">
+                    <p class="text-lg text-text-secondary mb-6">
+                        Backend Developer with solid experience in corporate systems, integrations between platforms, 
+                        REST APIs and microservices. Worked in technology, healthcare and services sectors, 
+                        focusing on code quality, process automation, reliability and production environment support.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-2 h-2 bg-accent-blue rounded-full mt-2 mr-3"></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Corporate Systems</h4>
+                                    <p class="text-sm text-text-secondary">Development and maintenance of mission-critical enterprise applications</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-2 h-2 bg-accent-blue rounded-full mt-2 mr-3"></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Platform Integrations</h4>
+                                    <p class="text-sm text-text-secondary">Seamless integration between multiple corporate systems and external APIs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-2 h-2 bg-accent-blue rounded-full mt-2 mr-3"></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Production Support</h4>
+                                    <p class="text-sm text-text-secondary">24/7 support for production environments and critical systems</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-2 h-2 bg-accent-blue rounded-full mt-2 mr-3"></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Code Quality</h4>
+                                    <p class="text-sm text-text-secondary">Focus on clean architecture, testing, and maintainable code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Stack -->
+    <section id="skills" class="py-20 bg-primary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">Technical Stack</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Backend -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-accent-cyan rounded-full mr-3"></div>
+                            <h3 class="text-xl font-semibold">Backend</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fab fa-windows text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">C# / .NET Core</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-java text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Java / Spring Boot</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-server text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">ASP.NET Core</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-shield-alt text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Spring Security</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Integrations & APIs -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-accent-cyan rounded-full mr-3"></div>
+                            <h3 class="text-xl font-semibold">Integrations & APIs</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-code text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">REST APIs</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-microchip text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Microservices</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-exchange-alt text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">System Integration</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-robot text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Automation Bots</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Databases -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-accent-cyan rounded-full mr-3"></div>
+                            <h3 class="text-xl font-semibold">Databases</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">SQL Server</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">PostgreSQL</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">MongoDB</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cloud & DevOps -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-accent-cyan rounded-full mr-3"></div>
+                            <h3 class="text-xl font-semibold">Cloud & DevOps</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fab fa-docker text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Docker</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-microsoft text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Azure</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-git-alt text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">Git / GitHub</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-tools text-accent-blue mr-3"></i>
+                                <span class="text-text-secondary">CI/CD Pipelines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section id="experience" class="py-20 bg-secondary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">Professional Experience</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Nova Vida -->
+                    <div class="gradient-border p-8">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">NOVA VIDA TECNOLOGIA DA INFORMAÇÃO</h3>
+                                <div class="flex items-center text-text-secondary mb-4">
+                                    <i class="fas fa-briefcase mr-2"></i>
+                                    <span>Backend Developer (.NET)</span>
+                                </div>
+                            </div>
+                            <div class="code-font text-accent-cyan bg-accent-cyan/10 px-4 py-2 rounded-lg">
+                                2022 - Present
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 text-text-secondary">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                Development and maintenance of corporate systems
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                Integrations with WhatsApp, Pipedrive, Zapier, Octadesk
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                Azure cloud infrastructure and Docker containerization
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                SQL Server and MongoDB database management
+                            </li>
+                        </ul>
+                        
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">C#</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">.NET Core</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">Azure</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">Docker</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">SQL Server</span>
+                        </div>
+                    </div>
+                    
+                    <!-- FinX / MedHelp -->
+                    <div class="gradient-border p-8">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-2">FinX / MedHelp</h3>
+                                <div class="flex items-center text-text-secondary mb-4">
+                                    <i class="fas fa-briefcase mr-2"></i>
+                                    <span>Backend Developer (.NET)</span>
+                                </div>
+                            </div>
+                            <div class="code-font text-accent-cyan bg-accent-cyan/10 px-4 py-2 rounded-lg">
+                                2020 - 2022
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 text-text-secondary">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                Microservices development for hospital scheduling system
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                New client integration via REST APIs
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                SQL query optimization and database performance tuning
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent-blue mt-1 mr-3"></i>
+                                Production environment support and troubleshooting
+                            </li>
+                        </ul>
+                        
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">.NET Core</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">Microservices</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">REST APIs</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-accent-blue/20 text-accent-blue rounded-full text-sm">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 bg-primary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">Backend Projects</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-accent-blue/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-code text-accent-blue"></i>
+                            </div>
+                            <span class="code-font text-sm text-accent-cyan">API REST</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Hospital Scheduling API</h3>
+                        <p class="text-text-secondary mb-6">
+                            Scalable REST API for hospital appointment management with doctor availability, 
+                            patient scheduling, and notification system.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">C#</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">.NET 6</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">PostgreSQL</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">Docker</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-accent-cyan hover:text-accent-blue transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            View on GitHub
+                        </a>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-accent-blue/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-microchip text-accent-blue"></i>
+                            </div>
+                            <span class="code-font text-sm text-accent-cyan">Microservice</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Notification Service</h3>
+                        <p class="text-text-secondary mb-6">
+                            Asynchronous microservice for handling email, SMS, and WhatsApp notifications 
+                            across multiple corporate systems.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">Java</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">Spring Boot</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">RabbitMQ</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">MongoDB</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-accent-cyan hover:text-accent-blue transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            View on GitHub
+                        </a>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="gradient-border p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-accent-blue/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-exchange-alt text-accent-blue"></i>
+                            </div>
+                            <span class="code-font text-sm text-accent-cyan">Integration</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">CRM Integration System</h3>
+                        <p class="text-text-secondary mb-6">
+                            Real-time data synchronization between Pipedrive CRM and internal systems 
+                            with automated lead processing and reporting.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">C#</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">Web API</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">SQL Server</span>
+                            <span class="px-2 py-1 bg-border-dark text-text-secondary rounded text-xs">Azure Functions</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-accent-cyan hover:text-accent-blue transition-colors">
+                            <i class="fab fa-github mr-2"></i>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Microservices & Cloud -->
+    <section id="architecture" class="py-20 bg-secondary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">Microservices & Cloud Architecture</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
+                <div class="gradient-border p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Scalable Backend Infrastructure</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-sitemap text-accent-blue"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-2">Microservices Architecture</h4>
+                                        <p class="text-text-secondary">
+                                            Independent, loosely coupled services with clear boundaries and 
+                                            dedicated data storage for each business capability.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-cloud text-accent-blue"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-2">Cloud Deployment</h4>
+                                        <p class="text-text-secondary">
+                                            Containerized applications deployed on Azure with auto-scaling, 
+                                            load balancing, and managed database services.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-database text-accent-blue"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-2">Database Strategy</h4>
+                                        <p class="text-text-secondary">
+                                            Polyglot persistence approach using SQL and NoSQL databases 
+                                            based on specific data requirements and access patterns.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="absolute inset-0 grid-pattern rounded-lg"></div>
+                            <div class="relative p-6 bg-secondary-dark/80 rounded-lg">
+                                <div class="text-center mb-8">
+                                    <div class="inline-flex items-center px-4 py-2 bg-accent-blue/20 rounded-full">
+                                        <i class="fas fa-sync-alt text-accent-blue mr-2"></i>
+                                        <span class="code-font text-sm">Service Communication</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 bg-primary-dark rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                            <span>API Gateway</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right text-text-secondary"></i>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div class="p-3 bg-primary-dark rounded-lg text-center">
+                                            <div class="text-xs text-accent-cyan mb-1">Auth Service</div>
+                                            <div class="text-xs text-text-secondary">JWT · RBAC</div>
+                                        </div>
+                                        <div class="p-3 bg-primary-dark rounded-lg text-center">
+                                            <div class="text-xs text-accent-cyan mb-1">User Service</div>
+                                            <div class="text-xs text-text-secondary">REST API</div>
+                                        </div>
+                                        <div class="p-3 bg-primary-dark rounded-lg text-center">
+                                            <div class="text-xs text-accent-cyan mb-1">Notification</div>
+                                            <div class="text-xs text-text-secondary">Async · Queue</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-primary-dark rounded-lg text-center">
+                                        <div class="text-xs text-accent-cyan mb-1">Message Broker</div>
+                                        <div class="text-xs text-text-secondary">Event-Driven Communication</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Integration -->
+    <section id="github" class="py-20 bg-primary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">GitHub Repositories</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
+                <div class="mb-8">
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <button class="filter-btn active px-4 py-2 bg-accent-blue text-white rounded-lg" data-filter="all">
+                            All Repositories
+                        </button>
+                        <button class="filter-btn px-4 py-2 bg-border-dark text-text-secondary rounded-lg hover:bg-border-dark/80" data-filter="csharp">
+                            C# / .NET
+                        </button>
+                        <button class="filter-btn px-4 py-2 bg-border-dark text-text-secondary rounded-lg hover:bg-border-dark/80" data-filter="java">
+                            Java / Spring
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="repositories-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Repositories will be loaded via JavaScript -->
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="https://github.com" class="inline-flex items-center px-6 py-3 bg-border-dark text-white rounded-lg hover:bg-border-dark/80 transition-colors">
+                        <i class="fab fa-github mr-3"></i>
+                        View All Repositories on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-secondary-dark">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                    <h2 class="text-3xl font-bold px-6">Contact</h2>
+                    <div class="h-px flex-grow bg-border-dark"></div>
+                </div>
+                
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
-                    <div class="animate-slide-up">
-                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
+                        <p class="text-text-secondary mb-8">
+                            Interested in backend development roles, enterprise system architecture, 
+                            or technical consultation? Get in touch to discuss how I can contribute 
+                            to your organization's backend infrastructure.
+                        </p>
                         
                         <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-envelope text-primary text-xl"></i>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-accent-blue"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg">Email</h4>
-                                    <p class="text-gray-600">alex.morgan@example.com</p>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <a href="mailto:contact@pauloelzeman.com" class="text-text-secondary hover:text-accent-cyan transition-colors">
+                                        contact@pauloelzeman.com
+                                    </a>
                                 </div>
                             </div>
                             
-                            <div class="flex items-start">
-                                <div class="bg-secondary/10 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-phone text-secondary text-xl"></i>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-linkedin text-accent-blue"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg">Phone</h4>
-                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                    <h4 class="font-semibold">LinkedIn</h4>
+                                    <a href="https://linkedin.com" class="text-text-secondary hover:text-accent-cyan transition-colors">
+                                        linkedin.com/in/pauloelzeman
+                                    </a>
                                 </div>
                             </div>
                             
-                            <div class="flex items-start">
-                                <div class="bg-accent/10 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-map-marker-alt text-accent text-xl"></i>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-github text-accent-blue"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg">Location</h4>
-                                    <p class="text-gray-600">San Francisco, California</p>
+                                    <h4 class="font-semibold">GitHub</h4>
+                                    <a href="https://github.com" class="text-text-secondary hover:text-accent-cyan transition-colors">
+                                        github.com/pauloelzeman
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-bold text-lg mb-4">Connect with me</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-black transition-colors duration-200" onclick="event.preventDefault()">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                                <a href="#" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors duration-200" onclick="event.preventDefault()">
-                                    <i class="fab fa-linkedin-in text-xl"></i>
-                                </a>
-                                <a href="#" class="bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-500 transition-colors duration-200" onclick="event.preventDefault()">
-                                    <i class="fab fa-twitter text-xl"></i>
-                                </a>
-                                <a href="#" class="bg-red-600 text-white p-3 rounded-lg hover:bg-red-700 transition-colors duration-200" onclick="event.preventDefault()">
-                                    <i class="fab fa-youtube text-xl"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Contact Form -->
-                    <div class="animate-slide-up">
-                        <div class="bg-white rounded-2xl p-8 shadow-lg">
-                            <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
+                    <div class="gradient-border p-8">
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-primary-dark border border-border-dark rounded-lg focus:outline-none focus:border-accent-blue" required>
+                            </div>
                             
-                            <form id="contactForm" onsubmit="event.preventDefault(); handleContactForm()">
-                                <div class="space-y-6">
-                                    <div>
-                                        <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
-                                        <input 
-                                            type="text" 
-                                            id="name" 
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                                            placeholder="Your name"
-                                            required
-                                        >
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
-                                        <input 
-                                            type="email" 
-                                            id="email" 
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                                            placeholder="your.email@example.com"
-                                            required
-                                        >
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                                        <input 
-                                            type="text" 
-                                            id="subject" 
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                                            placeholder="Project inquiry or question"
-                                            required
-                                        >
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                                        <textarea 
-                                            id="message" 
-                                            rows="5"
-                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
-                                            placeholder="Tell me about your project or ask a question..."
-                                            required
-                                        ></textarea>
-                                    </div>
-                                    
-                                    <button 
-                                        type="submit" 
-                                        class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-secondary transition-colors duration-200 shadow-lg hover:shadow-xl"
-                                    >
-                                        Send Message
-                                    </button>
-                                </div>
-                            </form>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-primary-dark border border-border-dark rounded-lg focus:outline-none focus:border-accent-blue" required>
+                            </div>
                             
-                            <div id="formMessage" class="mt-4 hidden p-4 rounded-lg"></div>
-                        </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 bg-primary-dark border border-border-dark rounded-lg focus:outline-none focus:border-accent-blue" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full px-6 py-3 bg-accent-blue text-white rounded-lg hover:bg-accent-blue/90 transition-colors glow-effect">
+                                Send Message
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -715,365 +811,255 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-12">
-        <div class="container mx-auto px-4">
+    <footer class="bg-primary-dark border-t border-border-dark py-12">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-white hover:text-accent transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('hero')">
-                        <span class="text-accent">&lt;</span>AlexMorgan<span class="text-accent">/&gt;</span>
-                    </a>
-                    <p class="text-gray-400 mt-2">Building digital experiences since 2018</p>
+                <div class="mb-6 md:mb-0">
+                    <div class="code-font text-xl font-bold text-white mb-2">
+                        Paulo<span class="text-accent-blue">.</span>Elzeman
+                    </div>
+                    <p class="text-text-secondary text-sm">
+                        Backend Software Engineer | .NET & Java Specialist
+                    </p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="#about" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('about')">About</a>
-                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('skills')">Skills</a>
-                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('projects')">Projects</a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-200" onclick="event.preventDefault(); scrollToSection('contact')">Contact</a>
+                    <a href="https://github.com" class="text-text-secondary hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com" class="text-text-secondary hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="mailto:contact@pauloelzeman.com" class="text-text-secondary hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Alex Morgan. All rights reserved.</p>
-                <p class="mt-2">Built with <i class="fas fa-heart text-red-500"></i> and modern web technologies</p>
+            <div class="mt-8 pt-8 border-t border-border-dark text-center text-text-secondary text-sm">
+                <p>© 2024 Paulo Elzeman. All rights reserved. | Focused on Enterprise Backend Development</p>
             </div>
         </div>
     </footer>
 
-    <!-- Project Details Modal -->
-    <div id="projectModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-6">
-                    <h3 id="modalTitle" class="text-2xl font-bold"></h3>
-                    <button onclick="closeProjectModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div id="modalContent" class="space-y-6">
-                    <!-- Content will be populated by JavaScript -->
-                </div>
-                
-                <div class="mt-8 flex justify-end">
-                    <button onclick="closeProjectModal()" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Define all data at the beginning
-        const projectsData = [
+        // Sample data for repositories
+        const repositories = [
             {
                 "id": 1,
-                "title": "E-commerce Platform",
-                "category": "Full Stack",
-                "description": "A complete e-commerce solution with user authentication, product management, shopping cart, and payment integration.",
-                "fullDescription": "This e-commerce platform was built to handle thousands of products and users. It includes features like user authentication with JWT, product search and filtering, shopping cart functionality, order management, and integration with Stripe for payments. The admin dashboard allows for inventory management, order tracking, and sales analytics.",
-                "technologies": ["React", "Node.js", "PostgreSQL", "Stripe API", "Tailwind CSS", "Redux", "Express.js"],
-                "features": [
-                    "User authentication and authorization",
-                    "Product catalog with search and filters",
-                    "Shopping cart and checkout process",
-                    "Payment integration with Stripe",
-                    "Admin dashboard for management",
-                    "Order tracking and history",
-                    "Responsive design for all devices"
-                ],
-                "image": "https://picsum.photos/600/400?random=2"
+                "name": "hospital-scheduling-api",
+                "description": "REST API for hospital appointment management system with .NET 6",
+                "language": "C#",
+                "stars": 42,
+                "updated": "2024-01-15",
+                "filter": "csharp"
             },
             {
                 "id": 2,
-                "title": "Task Management App",
-                "category": "Frontend",
-                "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-                "fullDescription": "This task management application enables teams to collaborate effectively on projects. It features real-time updates using WebSockets, drag-and-drop functionality for organizing tasks, team management with different permission levels, and comprehensive project tracking with deadlines and priorities.",
-                "technologies": ["Vue.js", "TypeScript", "GraphQL", "MongoDB", "Socket.io", "Vuex", "Vuetify"],
-                "features": [
-                    "Real-time collaboration with WebSockets",
-                    "Drag-and-drop task organization",
-                    "Team management with roles",
-                    "Project timelines and deadlines",
-                    "File attachments and comments",
-                    "Notifications and reminders",
-                    "Progress tracking and reporting"
-                ],
-                "image": "https://picsum.photos/600/400?random=3"
+                "name": "notification-service",
+                "description": "Spring Boot microservice for async notifications via email/SMS",
+                "language": "Java",
+                "stars": 28,
+                "updated": "2024-01-10",
+                "filter": "java"
             },
             {
                 "id": 3,
-                "title": "Analytics Dashboard",
-                "category": "Backend",
-                "description": "A data visualization dashboard that processes large datasets and presents insights through interactive charts and graphs.",
-                "fullDescription": "This analytics dashboard processes millions of data points to provide actionable insights through interactive visualizations. It includes real-time data processing, custom report generation, predictive analytics using machine learning models, and export functionality for reports in multiple formats.",
-                "technologies": ["Python", "Django", "D3.js", "Docker", "Redis", "Celery", "Pandas", "Scikit-learn"],
-                "features": [
-                    "Real-time data processing and visualization",
-                    "Interactive charts and graphs",
-                    "Custom report generation",
-                    "Predictive analytics with ML models",
-                    "Data export in multiple formats",
-                    "User-defined dashboards",
-                    "Scheduled report generation"
-                ],
-                "image": "https://picsum.photos/600/400?random=4"
+                "name": "crm-integration",
+                "description": "Real-time CRM data synchronization with Azure Functions",
+                "language": "C#",
+                "stars": 35,
+                "updated": "2024-01-05",
+                "filter": "csharp"
             },
             {
                 "id": 4,
-                "title": "Mobile Banking App",
-                "category": "Full Stack",
-                "description": "A secure mobile banking application with biometric authentication, transaction history, and bill payment features.",
-                "fullDescription": "This mobile banking application provides a secure platform for managing finances on the go. It includes biometric authentication (fingerprint and face ID), transaction history with categorization, bill payment scheduling, money transfers between accounts, and financial goal tracking with insights.",
-                "technologies": ["React Native", "Express.js", "MySQL", "AWS Lambda", "JWT", "Push Notifications", "Plaid API"],
-                "features": [
-                    "Biometric authentication (fingerprint/face ID)",
-                    "Transaction history and categorization",
-                    "Bill payment and scheduling",
-                    "Money transfers between accounts",
-                    "Financial goal tracking",
-                    "Push notifications for transactions",
-                    "Secure encryption for all data"
-                ],
-                "image": "https://picsum.photos/600/400?random=5"
+                "name": "auth-service",
+                "description": "JWT-based authentication service with Spring Security",
+                "language": "Java",
+                "stars": 31,
+                "updated": "2023-12-20",
+                "filter": "java"
             },
             {
                 "id": 5,
-                "title": "CMS for Publishers",
-                "category": "Backend",
-                "description": "A custom content management system designed for publishing companies with multi-user roles and workflow management.",
-                "fullDescription": "This content management system was specifically designed for publishing companies to manage their editorial workflow. It includes multi-user roles with different permissions, content scheduling and publishing, version control for articles, media library management, and analytics for content performance.",
-                "technologies": ["Django", "React", "MongoDB", "Docker", "Nginx", "Elasticsearch", "Redis"],
-                "features": [
-                    "Multi-user roles and permissions",
-                    "Content scheduling and publishing",
-                    "Version control for articles",
-                    "Media library management",
-                    "Content performance analytics",
-                    "SEO optimization tools",
-                    "Workflow management system"
-                ],
-                "image": "https://picsum.photos/600/400?random=6"
+                "name": "payment-processor",
+                "description": "Payment processing microservice with .NET Core and PostgreSQL",
+                "language": "C#",
+                "stars": 24,
+                "updated": "2023-12-15",
+                "filter": "csharp"
             },
             {
                 "id": 6,
-                "title": "Real Estate Platform",
-                "category": "Frontend",
-                "description": "A property listing platform with advanced search filters, virtual tours, and agent management system.",
-                "fullDescription": "This real estate platform connects buyers, sellers, and agents through an intuitive interface. It features advanced property search with filters, virtual tour integration using 360-degree photos, agent profiles and ratings, property comparison tools, and mortgage calculator integration.",
-                "technologies": ["Vue.js", "TypeScript", "GraphQL", "Tailwind CSS", "Mapbox API", "Firebase", "Stripe"],
-                "features": [
-                    "Advanced property search with filters",
-                    "Virtual tours with 360-degree photos",
-                    "Agent profiles and ratings",
-                    "Property comparison tools",
-                    "Mortgage calculator",
-                    "Favorite properties list",
-                    "Email notifications for new listings"
-                ],
-                "image": "https://picsum.photos/600/400?random=7"
+                "name": "config-server",
+                "description": "Centralized configuration service for microservices architecture",
+                "language": "Java",
+                "stars": 19,
+                "updated": "2023-12-10",
+                "filter": "java"
             }
         ];
 
-        const skillsData = {
-            "frontend": [
-                { "name": "React", "level": 95 },
-                { "name": "Vue.js", "level": 85 },
-                { "name": "TypeScript", "level": 90 },
-                { "name": "JavaScript", "level": 95 },
-                { "name": "HTML/CSS", "level": 98 }
-            ],
-            "backend": [
-                { "name": "Node.js", "level": 92 },
-                { "name": "Python/Django", "level": 88 },
-                { "name": "PostgreSQL", "level": 90 },
-                { "name": "MongoDB", "level": 85 },
-                { "name": "REST APIs", "level": 95 }
-            ],
-            "tools": [
-                { "name": "Docker", "level": 85 },
-                { "name": "AWS", "level": 80 },
-                { "name": "Git/GitHub", "level": 95 },
-                { "name": "CI/CD", "level": 85 },
-                { "name": "Testing", "level": 90 }
-            ]
+        // DOM elements
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const repositoriesContainer = document.getElementById('repositories-container');
+        const contactForm = document.getElementById('contact-form');
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Repository filtering
+        function filterRepositories(filter) {
+            const filtered = filter === 'all' 
+                ? repositories 
+                : repositories.filter(repo => repo.filter === filter);
+            
+            renderRepositories(filtered);
+            
+            // Update active button
+            filterButtons.forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active');
+                    btn.classList.remove('bg-border-dark', 'text-text-secondary');
+                    btn.classList.add('bg-accent-blue', 'text-white');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.remove('bg-accent-blue', 'text-white');
+                    btn.classList.add('bg-border-dark', 'text-text-secondary');
+                }
+            });
+        }
+
+        // Render repositories
+        function renderRepositories(repos) {
+            repositoriesContainer.innerHTML = '';
+            
+            repos.forEach(repo => {
+                const repoElement = document.createElement('div');
+                repoElement.className = 'gradient-border p-6';
+                repoElement.innerHTML = `
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 ${repo.language === 'C#' ? 'bg-accent-blue/20' : 'bg-purple-500/20'} rounded-lg flex items-center justify-center">
+                            <i class="fas fa-code ${repo.language === 'C#' ? 'text-accent-blue' : 'text-purple-500'}"></i>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-star text-yellow-500"></i>
+                            <span class="code-font text-sm">${repo.stars}</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">${repo.name}</h3>
+                    <p class="text-text-secondary mb-6">${repo.description}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full ${repo.language === 'C#' ? 'bg-accent-blue' : 'bg-purple-500'} mr-2"></div>
+                            <span class="text-sm text-text-secondary">${repo.language}</span>
+                        </div>
+                        <div class="code-font text-xs text-text-secondary">
+                            Updated: ${formatDate(repo.updated)}
+                        </div>
+                    </div>
+                `;
+                repositoriesContainer.appendChild(repoElement);
+            });
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        // Initialize filter buttons
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterRepositories(btn.dataset.filter);
+            });
+        });
+
+        // Contact form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a backend
+            console.log('Contact form submitted:', { name, email, message });
+            
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Initialize repositories on page load
+        filterRepositories('all');
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                header.classList.add('shadow-lg');
+                header.classList.add('bg-primary-dark');
+            } else {
+                header.classList.remove('shadow-lg');
+                header.classList.remove('bg-primary-dark');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        // Navigation functions
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                window.scrollTo({
-                    top: element.offsetTop - 80,
-                    behavior: "smooth"
-                });
-            }
-        }
-
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById("mobileMenu");
-            mobileMenu.classList.toggle("hidden");
-        }
-
-        // Project modal functions
-        function showProjectDetails(projectId) {
-            const project = projectsData.find(p => p.id === projectId);
-            if (!project) return;
-
-            const modal = document.getElementById("projectModal");
-            const title = document.getElementById("modalTitle");
-            const content = document.getElementById("modalContent");
-
-            title.textContent = project.title;
-            
-            content.innerHTML = `
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                        <img 
-                            src="${project.image}" 
-                            alt="${project.title}" 
-                            class="w-full rounded-lg shadow-lg"
-                            loading="lazy"
-                        >
-                        <div class="mt-4">
-                            <span class="inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                                project.category === "Full Stack" ? "bg-primary text-white" :
-                                project.category === "Frontend" ? "bg-accent text-white" :
-                                "bg-secondary text-white"
-                            }">
-                                ${project.category}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="mb-6">
-                            <h4 class="text-lg font-bold mb-2">Project Description</h4>
-                            <p class="text-gray-700">${project.fullDescription}</p>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="text-lg font-bold mb-2">Key Features</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                                ${project.features.map(feature => `<li>${feature}</li>`).join("")}
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h4 class="text-lg font-bold mb-2">Technologies Used</h4>
-                            <div class="flex flex-wrap gap-2">
-                                ${project.technologies.map(tech => `
-                                    <span class="text-xs bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
-                                        ${tech}
-                                    </span>
-                                `).join("")}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove("hidden");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeProjectModal() {
-            const modal = document.getElementById("projectModal");
-            modal.classList.add("hidden");
-            document.body.style.overflow = "auto";
-        }
-
-        // Contact form handling
-        function handleContactForm() {
-            const form = document.getElementById("contactForm");
-            const formMessage = document.getElementById("formMessage");
-            
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const subject = document.getElementById("subject").value;
-            const message = document.getElementById("message").value;
-            
-            // Simple validation
-            if (!name || !email || !subject || !message) {
-                showFormMessage("Please fill in all fields.", "error");
-                return;
-            }
-            
-            // Simulate form submission
-            showFormMessage("Thank you for your message! I'll get back to you soon.", "success");
-            
-            // Reset form
-            form.reset();
-            
-            // Scroll to top of form
-            form.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }
-
-        function showFormMessage(text, type) {
-            const formMessage = document.getElementById("formMessage");
-            formMessage.textContent = text;
-            formMessage.className = "mt-4 p-4 rounded-lg";
-            
-            if (type === "success") {
-                formMessage.classList.add("bg-green-100", "text-green-800");
-            } else {
-                formMessage.classList.add("bg-red-100", "text-red-800");
-            }
-            
-            formMessage.classList.remove("hidden");
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.classList.add("hidden");
-            }, 5000);
-        }
-
-        // Load more projects function
-        function loadMoreProjects() {
-            alert("In a real application, this would load more projects from a database or API.");
-        }
-
-        // Initialize animations on scroll
-        function initAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("animate-fade-in");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all project cards and sections
-            document.querySelectorAll(".project-card, section").forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Initialize when page loads
-        document.addEventListener("DOMContentLoaded", function() {
-            initAnimations();
-            
-            // Close modal on escape key
-            document.addEventListener("keydown", function(e) {
-                if (e.key === "Escape") {
-                    closeProjectModal();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
                 }
             });
-            
-            // Close modal on outside click
-            document.getElementById("projectModal").addEventListener("click", function(e) {
-                if (e.target === this) {
-                    closeProjectModal();
-                }
-            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.gradient-border').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
