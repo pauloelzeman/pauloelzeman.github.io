@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #12001f, #05010a);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  align-items: center;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #7cf6ff;
+}
+
+.logo span {
+  color: #b84dff;
+}
+
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #fff;
+}
+
+/* BUTTON */
+.btn {
+  background: linear-gradient(90deg, #7c4dff, #00e5ff);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #7c4dff;
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 60px;
+  gap: 50px;
+}
+
+.hero-left h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.hero-left ul li {
+  margin: 12px 0;
+  font-size: 18px;
+  color: #ddd;
+}
+
+.stack span {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 20px;
+  padding: 8px 14px;
+  border: 1px solid #7cf6ff;
+  border-radius: 20px;
+  color: #7cf6ff;
+}
+
+/* RIGHT */
+.hero-right h2 {
+  font-size: 46px;
+  line-height: 1.2;
+}
+
+.hero-right h2 span {
+  color: #7c4dff;
+}
+
+.hero-right p {
+  margin: 20px 0;
+  color: #ccc;
+  max-width: 500px;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(124,77,255,0.4);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px #7c4dff55;
+}
+
+.card h3 {
+  font-size: 28px;
+  color: #7cf6ff;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
