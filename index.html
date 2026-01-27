@@ -1,79 +1,160 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root">
+<html lang="pt-BR">
 <head>
     <base target="_self">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paulo Elzeman - Backend Software Engineer</title>
-    <meta name="description" content="Backend Software Engineer with 4+ years experience in C#/.NET, Java/Spring, microservices, and cloud integration">
-
+    <title>Paulo Elzeman - Engenheiro de Software Backend</title>
+    <meta name="description" content="Engenheiro de Software Backend com mais de 4 anos de experiência em C#/.NET, Java/Spring, microsserviços e integração em nuvem">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary-dark: #0a0a0f;
-            --secondary-dark: #12121c;
-            --accent-blue: #2563eb;
-            --accent-cyan: #06b6d4;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-dark: #1e293b;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary-dark);
-            color: var(--text-primary);
-        }
-        .code-font { font-family: 'JetBrains Mono', monospace; }
-        .gradient-border { background: var(--secondary-dark); border-radius: .75rem; padding: 1.5rem; }
-    </style>
 </head>
 
-<body>
+<body class="min-h-screen">
 
-<!-- NAV -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-primary-dark border-b border-border-dark">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+<!-- Navegação -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-primary-dark/95 backdrop-blur-sm border-b border-border-dark">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <a href="#hero" class="code-font text-xl font-bold text-white hover:text-accent-cyan transition-colors">
+                Paulo<span class="text-accent-blue">.</span>Elzeman
+            </a>
 
-        <a href="#hero" class="code-font text-xl font-bold">
-            Paulo<span class="text-accent-blue">.</span>Elzeman
-        </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about">Perfil</a>
+                <a href="#experience">Experiência</a>
+                <a href="#projects">Projetos</a>
+                <a href="#skills">Stack</a>
+                <a href="#github">GitHub</a>
+                <a href="#contact">Contato</a>
+            </div>
 
-        <div class="hidden md:flex space-x-6">
-            <a href="#about" data-i18n="nav.profile">Profile</a>
-            <a href="#projects" data-i18n="nav.projects">Projects</a>
-            <a href="#skills" data-i18n="nav.stack">Stack</a>
-            <a href="#github" data-i18n="nav.github">GitHub</a>
-            <a href="#contact" data-i18n="nav.contact">Contact</a>
-        </div>
-
-        <!-- Language Switch -->
-        <div class="flex space-x-2 ml-4">
-            <button onclick="setLanguage('en')" class="text-xs px-2 py-1 border rounded">EN</button>
-            <button onclick="setLanguage('pt')" class="text-xs px-2 py-1 border rounded">PT</button>
+            <button id="mobile-menu-btn" class="md:hidden text-text-secondary">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
     </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero" class="pt-32 px-6 max-w-4xl mx-auto">
-    <span class="text-accent-cyan" data-i18n="hero.available">
-        Available for Enterprise Backend Roles
-    </span>
+<!-- Hero -->
+<section id="hero" class="min-h-screen grid-pattern pt-20">
+    <div class="container mx-auto px-6 py-20">
+        <div class="max-w-4xl mx-auto">
 
-    <h1 class="text-5xl font-bold mt-4">
-        Paulo <span class="text-accent-cyan">Elzeman</span>
-    </h1>
+            <div class="inline-block px-4 py-2 rounded-full bg-accent-blue/10 border border-accent-blue/30 text-accent-blue code-font text-sm mb-6">
+                <span class="pulse-dot">●</span> Disponível para vagas Backend Enterprise
+            </div>
 
-    <h2 class="text-2xl mt-4" data-i18n="hero.title">
-        Backend Software Engineer | .NET & Java
-    </h2>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                Paulo <span class="text-accent-cyan">Elzeman</span>
+            </h1>
 
-    <p class="mt-4 text-text-secondary" data-i18n="hero.subtitle">
+            <h2 class="text-2xl md:text-3xl font-semibold text-text-secondary mb-2">
+                <span class="typing-animation">Engenheiro de Software Backend | .NET & Java</span>
+            </h2>
+
+            <p class="text-xl text-text-secondary mb-6">
+                Sistemas Corporativos • Integrações • Microsserviços • Cloud
+            </p>
+
+            <p class="text-lg text-text-secondary mb-10">
+                Desenvolvedor Backend com mais de 4 anos de experiência em sistemas corporativos,
+                APIs REST, microsserviços, integrações entre plataformas e suporte a produção.
+                Forte atuação em C#/.NET, Java/Spring, bancos de dados e infraestrutura em nuvem.
+            </p>
+
+            <div class="flex flex-wrap gap-4 mb-20">
+                <a href="#projects" class="px-6 py-3 bg-accent-blue text-white rounded-lg">Ver Projetos</a>
+                <a href="#github" class="px-6 py-3 border border-border-dark rounded-lg">Explorar GitHub</a>
+                <a href="#contact" class="px-6 py-3 border border-border-dark rounded-lg">Contato</a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-accent-cyan">4+</div>
+                    <div class="text-sm text-text-secondary">Anos Backend</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-accent-cyan">50+</div>
+                    <div class="text-sm text-text-secondary">APIs Criadas</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-accent-cyan">10+</div>
+                    <div class="text-sm text-text-secondary">Microsserviços</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-accent-cyan">24/7</div>
+                    <div class="text-sm text-text-secondary">Suporte Produção</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Perfil Profissional -->
+<section id="about" class="py-20 bg-secondary-dark">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <h2 class="text-3xl font-bold mb-6 text-center">Perfil Profissional</h2>
+
+        <p class="text-lg text-text-secondary mb-6">
+            Desenvolvedor Backend com sólida experiência em sistemas corporativos,
+            integrações entre plataformas, APIs REST e microsserviços.
+            Atuação nos setores de tecnologia, saúde e serviços,
+            com foco em qualidade de código, automação de processos,
+            confiabilidade e suporte a ambientes produtivos.
+        </p>
+    </div>
+</section>
+
+<!-- Contato -->
+<section id="contact" class="py-20 bg-secondary-dark">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <h2 class="text-3xl font-bold mb-8 text-center">Contato</h2>
+
+        <p class="text-text-secondary mb-8 text-center">
+            Interessado em oportunidades Backend, arquitetura de sistemas
+            ou consultoria técnica? Entre em contato.
+        </p>
+
+        <form id="contact-form" class="space-y-6">
+            <div>
+                <label for="name">Nome</label>
+                <input id="name" type="text" required class="w-full px-4 py-3 bg-primary-dark border border-border-dark rounded-lg">
+            </div>
+
+            <div>
+                <label for="email">E-mail</label>
+                <input id="email" type="email" required class="w-full px-4 py-3 bg-primary-dark border border-border-dark rounded-lg">
+            </div>
+
+            <div>
+                <label for="message">Mensagem</label>
+                <textarea id="message" rows="4" required class="w-full px-4 py-3 bg-primary-dark border border-border-dark rounded-lg"></textarea>
+            </div>
+
+            <button type="submit" class="w-full px-6 py-3 bg-accent-blue text-white rounded-lg">
+                Enviar Mensagem
+            </button>
+        </form>
+    </div>
+</section>
+
+<footer class="bg-primary-dark border-t border-border-dark py-8 text-center">
+    <p class="text-text-secondary text-sm">
+        © 2024 Paulo Elzeman. Todos os direitos reservados. | Foco em Desenvolvimento Backend Corporativo
+    </p>
+</footer>
+
+<script>
+alert("Mensagem enviada com sucesso! Retornarei em breve.");
+</script>
+
+</body>
+</html>    <p class="mt-4 text-text-secondary" data-i18n="hero.subtitle">
         Enterprise Systems • Integrations • Microservices • Cloud
     </p>
 
