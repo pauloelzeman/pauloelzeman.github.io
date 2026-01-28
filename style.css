@@ -1,4 +1,4 @@
-* {
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -113,40 +113,6 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
-
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(124,77,255,0.4);
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px #7c4dff55;
-}
-
-.card h3 {
-  font-size: 28px;
-  color: #7cf6ff;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #666;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-}}
 
 .card {
   background: rgba(255,255,255,0.05);
