@@ -1,14 +1,19 @@
-document.querySelectorAll('.job, .card').forEach((el, i) => {
-  el.style.opacity = 0;
-  el.style.animation = `fadeIn 0.6s ease forwards`;
-  el.style.animationDelay = `${i * 0.1}s`;
+// Animação simples de entrada
+document.querySelectorAll('.card').forEach((card, index) => {
+  card.style.animation = `fadeUp 0.6s ease forwards`;
+  card.style.animationDelay = `${index * 0.15}s`;
 });
 
 const style = document.createElement('style');
 style.innerHTML = `
-@keyframes fadeIn {
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }`;
 document.head.appendChild(style);
