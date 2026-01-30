@@ -1,149 +1,159 @@
-{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
 }
 
 body {
-  background: radial-gradient(circle at top, #12001f, #05010a);
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #14132a, #0a0916);
   color: #fff;
-  min-height: 100vh;
 }
 
 /* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 60px;
+  padding: 24px 60px;
   align-items: center;
 }
 
 .logo {
-  font-size: 26px;
   font-weight: 800;
-  color: #7cf6ff;
+  font-size: 22px;
 }
 
 .logo span {
-  color: #b84dff;
+  color: #7c5cff;
 }
 
-.navbar a {
-  margin-left: 20px;
+nav a {
+  margin-right: 25px;
   text-decoration: none;
   color: #bbb;
-  transition: 0.3s;
 }
 
-.navbar a:hover {
+nav a:hover {
   color: #fff;
 }
 
-/* BUTTON */
-.btn {
-  background: linear-gradient(90deg, #7c4dff, #00e5ff);
+.btn-primary {
+  background: linear-gradient(135deg, #7c5cff, #5f9cff);
   border: none;
   padding: 10px 18px;
-  border-radius: 6px;
+  border-radius: 8px;
   color: #fff;
   cursor: pointer;
-  font-weight: 600;
 }
 
-.btn.outline {
+.btn-secondary {
   background: transparent;
-  border: 1px solid #7c4dff;
+  border: 1px solid #7c5cff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: #7c5cff;
+  cursor: pointer;
 }
 
 /* HERO */
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 60px;
-  gap: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 60px;
 }
 
-.hero-left h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
+.hero-text {
+  max-width: 520px;
 }
 
-.hero-left ul li {
-  margin: 12px 0;
-  font-size: 18px;
-  color: #ddd;
-}
-
-.stack span {
-  display: inline-block;
-  margin-right: 10px;
-  margin-top: 20px;
-  padding: 8px 14px;
-  border: 1px solid #7cf6ff;
-  border-radius: 20px;
-  color: #7cf6ff;
-}
-
-/* RIGHT */
-.hero-right h2 {
-  font-size: 46px;
+.hero-text h1 {
+  font-size: 48px;
   line-height: 1.2;
 }
 
-.hero-right h2 span {
-  color: #7c4dff;
+.hero-text span {
+  color: #7c5cff;
 }
 
-.hero-right p {
-  margin: 20px 0;
-  color: #ccc;
-  max-width: 500px;
+.hero-text p {
+  margin: 25px 0;
+  color: #aaa;
 }
 
-.actions {
+.hero-actions button {
+  margin-right: 15px;
+}
+
+/* AVATAR */
+.hero-avatar {
   display: flex;
-  gap: 15px;
-  margin-bottom: 40px;
+  align-items: center;
+}
+
+.avatar-circle {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1e1d3a, #0f0e22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatar-circle img {
+  width: 140px;
+  z-index: 2;
+}
+
+.avatar-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px dashed rgba(124,92,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  animation: spin 18s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* STATS */
 .stats {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  padding: 40px 60px;
 }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(124,77,255,0.4);
-  padding: 20px;
-  border-radius: 12px;
+.stat-card {
+  background: #14132a;
+  border-radius: 14px;
+  padding: 25px;
   text-align: center;
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 20px #7c4dff55;
-}
-
-.card h3 {
+.stat-card h3 {
+  color: #7c5cff;
   font-size: 28px;
-  color: #7cf6ff;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #666;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
+/* CODE BOX */
+.code-box {
+  margin: 40px 60px;
+  background: #0f0e22;
+  border-radius: 16px;
+  padding: 25px;
+  color: #7cffa0;
+  font-family: monospace;
+  font-size: 14px;
 }
