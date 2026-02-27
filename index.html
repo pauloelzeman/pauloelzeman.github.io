@@ -67,19 +67,18 @@
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <nav class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 shadow-lg hover:scale-110 transition-transform duration-300">
-                        <img src="logo/dev.png" alt="dev.png" class="w-6 h-6 object-contain">
+                <div class="flex items-center space-x-3 flex-1 overflow-hidden">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <img src="logo/dev.png" alt="Logo" class="w-6 h-6 object-contain">
                     </div>
-                    <div class="overflow-hidden w-48">
-                        <span class="text-xl font-bold text-dark inline-block whitespace-nowrap animate-marquee">
-                            Paulo Elzeman • Paulo Elzeman • Paulo Elzeman •
+                    <div class="flex-1 overflow-hidden">
+                        <span id="digital-name" class="text-xl font-bold text-dark whitespace-nowrap inline-block">          
                         </span>
                     </div>
                 </div>
-                
+            </div>
+            <div>
                 <ul id="nav-menu" class="hidden md:flex space-x-8"></ul>
-                
                 <button id="mobile-menu-btn" class="md:hidden text-dark">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
