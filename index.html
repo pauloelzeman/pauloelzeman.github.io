@@ -28,6 +28,20 @@
         }
     </script>
     <style>
+        .marquee {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 20s linear infinite;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
         html {
             scroll-behavior: smooth;
         }
@@ -53,9 +67,9 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
                     <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">BD</span>
+                        <span class="text-white font-bold text-lg">PE</span>
                     </div>
-                    <span class="text-xl font-bold text-dark">BackendDev</span>
+                    <span class="text-xl font-bold text-dark">Paulo Elzeman</span>
                 </div>
                 
                 <ul id="nav-menu" class="hidden md:flex space-x-8"></ul>
@@ -474,7 +488,14 @@
         // DOM Initialization
         document.addEventListener("DOMContentLoaded", function() {
             // Render navigation
-            document.getElementById("nav-menu").innerHTML = renderNavigation(navigationItems);
+            const navMarquee = document.getElementById("nav-marquee");
+
+// duplicamos os itens para efeito infinito
+const navContent = renderNavigation(navigationItems);
+navMarquee.innerHTML = navContent + navContent;
+
+// adiciona classe de animação
+navMarquee.classList.add("marquee");
             document.getElementById("mobile-nav-menu").innerHTML = renderNavigation(navigationItems);
             
             // Render services
