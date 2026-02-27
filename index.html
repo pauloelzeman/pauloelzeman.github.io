@@ -1,89 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Stack.Dev</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Developer Portfolio | .NET & Java Specialist</title>
+    <meta name="description" content="Professional backend developer portfolio with 4+ years experience in .NET and Java Spring Boot. Expert in REST APIs, microservices, and scalable architectures.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        secondary: "#1e40af",
+                        accent: "#3b82f6",
+                        dark: "#0f172a",
+                        light: "#f8fafc"
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans text-gray-800 bg-light">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">BD</span>
+                    </div>
+                    <span class="text-xl font-bold text-dark">BackendDev</span>
+                </div>
+                
+                <ul id="nav-menu" class="hidden md:flex space-x-8"></ul>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-dark">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden">
+                <ul id="mobile-nav-menu" class="space-y-4"></ul>
+            </div>
+        </nav>
+    </header>
 
-<header class="navbar">
-  <div class="logo"><span>{}</span>PAULO<span>.ELZEMAN</span></div>
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Serviços</a>
-    <a href="#">Projetos</a>
-    <a href="#">Avaliações</a>
-    <button class="btn-primary">Contato</button>
-  </nav>
-</header>
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Software Developer | Back-End (.NET & Java)</h1>
+                <div class="text-xl md:text-2xl text-blue-200 mb-8">
+                    <p class="mb-2">⚙️ Back-End Engineer (.NET & Java)</p>
+                    <p class="mb-2">🚀 APIs REST, microsserviços e integrações corporativas</p>
+                    <p class="mb-2">🧩 Arquiteturas escaláveis e orientadas a domínio</p>
+                    <p class="mb-2">🤝 Experiência em ambientes corporativos e sistemas críticos</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <span class="bg-blue-500/20 px-4 py-2 rounded-full">C# / .NET</span>
+                    <span class="bg-green-500/20 px-4 py-2 rounded-full">Java / Spring Boot</span>
+                    <span class="bg-purple-500/20 px-4 py-2 rounded-full">SQL</span>
+                    <span class="bg-yellow-500/20 px-4 py-2 rounded-full">MongoDB</span>
+                    <span class="bg-blue-500/20 px-4 py-2 rounded-full">Docker</span>
+                    <span class="bg-red-500/20 px-4 py-2 rounded-full">APIs REST</span>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8 max-w-3xl mx-auto">
+                    <p class="text-lg leading-relaxed">
+                        Desenvolvedor de Software com mais de 4 anos de experiência em desenvolvimento back-end, atuando com C#/.NET e Java (Spring Boot) na construção de soluções robustas e escaláveis. Possuo forte expertise em APIs REST, integrações de sistemas, bancos de dados relacionais e NoSQL, além de automação de processos e boas práticas de arquitetura e código limpo.
+                    </p>
+                </div>
+                
+                <div class="mt-10">
+                    <a href="#contact" class="bg-white text-dark font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors mr-4">
+                        <i class="fas fa-envelope mr-2"></i>Entrar em Contato
+                    </a>
+                    <a href="#projects" class="bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fas fa-code mr-2"></i>Ver Projetos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<main class="hero">
-    <section class="hero-text">
-    <h1>Software Developer <span>|</span> Back-End (.NET & Java)</h1>
-    <ul>
-        <li>⚙️ Back-End Engineer (.NET & Java)</li>
-        <li>🚀 APIs REST, microsserviços e integrações corporativas</li>
-        <li>🧩 Arquiteturas escaláveis e orientadas a domínio</li>
-        <li>🤝 Experiência em ambientes corporativos e sistemas críticos</li>
-    </ul>
-    <div class="stack">
-       <span>C# / .NET</span>
-       <span>Java / Spring Boot</span>
-       <span>SQL</span>
-       <span>MongoDB</span>
-       <span>Docker</span>
-       <span>APIs REST</span>
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">Serviços</h2>
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">Projetos</h2>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">Avaliações</h2>
+            <div id="reviews-container" class="max-w-6xl mx-auto"></div>
+            <div class="text-center mt-12">
+                <button id="add-review-btn" class="bg-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-secondary transition-colors">
+                    <i class="fas fa-plus mr-2"></i>Adicionar Avaliação
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Contato</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Entre em Contato</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p id="email-display" class="text-blue-200">contato@backenddev.com</p>
+                                    <button id="copy-email" class="text-sm text-blue-300 hover:text-white mt-1">
+                                        <i class="fas fa-copy mr-1"></i>Copiar email
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">WhatsApp</h4>
+                                    <p class="text-blue-200">+55 (11) 99999-9999</p>
+                                    <a href="https://wa.me/5511999999999" target="_blank" class="inline-block mt-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                        <i class="fab fa-whatsapp mr-2"></i>Enviar Mensagem
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Envie uma Mensagem</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-2">Nome</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Seu nome" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="seu@email.com" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-2">Mensagem</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Sua mensagem..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-dark font-semibold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">BD</span>
+                        </div>
+                        <span class="text-xl font-bold">BackendDev</span>
+                    </div>
+                    <p class="text-gray-400">Desenvolvedor Backend Especialista em .NET & Java</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BackendDev Portfolio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-dark">Adicionar Avaliação</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-dark">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form id="review-form" class="space-y-6">
+                <div>
+                    <label for="reviewer-name" class="block mb-2 text-gray-700">Nome</label>
+                    <input type="text" id="reviewer-name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Seu nome" required>
+                </div>
+                <div>
+                    <label for="reviewer-role" class="block mb-2 text-gray-700">Cargo/Posição</label>
+                    <input type="text" id="reviewer-role" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ex: Tech Lead, Recrutador" required>
+                </div>
+                <div>
+                    <label for="review-rating" class="block mb-2 text-gray-700">Avaliação (1-5)</label>
+                    <div class="flex space-x-2" id="rating-stars">
+                        <!-- Stars will be generated by JavaScript -->
+                    </div>
+                    <input type="hidden" id="rating-value" value="5" required>
+                </div>
+                <div>
+                    <label for="review-comment" class="block mb-2 text-gray-700">Comentário</label>
+                    <textarea id="review-comment" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Sua avaliação..." required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-secondary transition-colors">
+                    <i class="fas fa-star mr-2"></i>Enviar Avaliação
+                </button>
+            </form>
+        </div>
     </div>
-    <p></p>
-    <p></p>
-    <h1>Building <span>Digital</span><br/>Solutions</h1>
-    <p>
-  Desenvolvedor de Software com mais de 4 anos de experiência em desenvolvimento back-end,
-  atuando com C#/.NET e Java (Spring Boot) na construção de soluções robustas e escaláveis.
-  Possuo forte expertise em APIs REST, integrações de sistemas, bancos de dados relacionais
-  e NoSQL, além de automação de processos e boas práticas de arquitetura e código limpo.
-    </p>
 
-    <div class="actions">
-      <button class="btn-primary">Ver Projetos</button>
-      <button class="btn-secondary">Entre em contato</button>
-    </div>
-    <small>🏆 Developer Award 2026 – By Paulo Elzeman</small>
-  </section>
+    <script>
+        // Data Layer
+        const navigationItems = [
+            { "label": "Inicio", "href": "#home", "icon": "fas fa-home" },
+            { "label": "Serviços", "href": "#services", "icon": "fas fa-cogs" },
+            { "label": "Projetos", "href": "#projects", "icon": "fas fa-code" },
+            { "label": "Avaliações", "href": "#reviews", "icon": "fas fa-star" },
+            { "label": "Contato", "href": "#contact", "icon": "fas fa-envelope" }
+        ];
 
-  <section class="hero-avatar">
-    <div class="avatar-circle">
-      <img src="https://pauloelzeman.github.io/logo/dev.png" alt="Developer Avatar">
-      <span class="avatar-ring">CREATIVE • DESIGN • DEVELOPMENT • CODE • SYSTEM</span>
-    </div>
-  </section>
-</main>
+        const servicesData = [
+            { 
+                "title": "Desenvolvimento Backend", 
+                "description": "Criação de APIs REST robustas e escaláveis usando .NET e Spring Boot com arquitetura limpa e testes automatizados.",
+                "icon": "fas fa-server",
+                "color": "bg-blue-500"
+            },
+            { 
+                "title": "Integração de Sistemas", 
+                "description": "Conectando sistemas corporativos através de APIs, webhooks e mensageria para fluxos de dados eficientes.",
+                "icon": "fas fa-exchange-alt",
+                "color": "bg-green-500"
+            },
+            { 
+                "title": "Arquitetura de Microsserviços", 
+                "description": "Design e implementação de arquiteturas distribuídas com Docker, Kubernetes e padrões de resiliência.",
+                "icon": "fas fa-sitemap",
+                "color": "bg-purple-500"
+            },
+            { 
+                "title": "Banco de Dados", 
+                "description": "Modelagem e otimização de bancos relacionais (SQL Server, PostgreSQL) e NoSQL (MongoDB).",
+                "icon": "fas fa-database",
+                "color": "bg-yellow-500"
+            },
+            { 
+                "title": "DevOps & CI/CD", 
+                "description": "Automação de pipelines de deploy, containers Docker e monitoramento de aplicações em produção.",
+                "icon": "fas fa-robot",
+                "color": "bg-red-500"
+            },
+            { 
+                "title": "Consultoria Técnica", 
+                "description": "Análise de sistemas legados, migrações tecnológicas e definição de boas práticas de desenvolvimento.",
+                "icon": "fas fa-chalkboard-teacher",
+                "color": "bg-indigo-500"
+            }
+        ];
 
-<section class="stats">
-  <div class="stat-card">
-    <h3><span></></span></h3>
-    <h3>4+</h3>
-    <p>Anos em Back-End</p>
-  </div>
-  <div class="stat-card">
-    <h3><span>📜</span></h3>
-    <h3>40+</h3>
-    <p>Entregas Técnicas</p>
-  </div>
-  <div class="stat-card">
-    <h3><span>🧑‍💼</span></h3>
-    <h3>8+</h3>
-    <p>Clientes Corporativos</p>
-  </div>
-  <div class="stat-card">
-    <h3><span>✔️</span></h3>
-    <h3>100%</h3>
-    <p>Boas Práticas</p>
-  </div>
-</div>
-</section>
-<script src="script.js"></script>
+        const projectsData = [
+            { 
+                "title": "Sistema de Pagamentos", 
+                "description": "API de pagamentos com .NET Core, Redis cache e integração com múltiplos gateways.",
+                "image": "https://picsum.photos/400/250?random=1",
+                "alt": "Payment system dashboard",
+                "tags": ["C#", ".NET Core", "Redis", "SQL Server"],
+                "link": "#"
+            },
+            { 
+                "title": "Plataforma E-commerce", 
+                "description": "Backend escalável para e-commerce com Spring Boot, MongoDB e filas RabbitMQ.",
+                "image": "https://picsum.photos/400/250?random=2",
+                "alt": "E-commerce platform architecture",
+                "tags": ["Java", "Spring Boot", "MongoDB", "RabbitMQ"],
+                "link": "#"
+            },
+            { 
+                "title": "SaaS Corporativo", 
+                "description": "Sistema multi-tenant com autenticação JWT, autorização por roles e relatórios em tempo real.",
+                "image": "https://picsum.photos/400/250?random=3",
+                "alt": "Corporate SaaS application",
+                "tags": [".NET", "Angular", "PostgreSQL", "Docker"],
+                "link": "#"
+            },
+            { 
+                "title": "API de Analytics", 
+                "description": "API para processamento de dados analíticos com Elasticsearch e cache distribuído.",
+                "image": "https://picsum.photos/400/250?random=4",
+                "alt": "Analytics API dashboard",
+                "tags": ["Java", "Spring", "Elasticsearch", "Kafka"],
+                "link": "#"
+            },
+            { 
+                "title": "Sistema de Reservas", 
+                "description": "Sistema de reservas com WebSocket para atualizações em tempo real e notificações push.",
+                "image": "https://picsum.photos/400/250?random=5",
+                "alt": "Booking system interface",
+                "tags": [".NET Core", "SignalR", "SQL Server", "Azure"],
+                "link": "#"
+            },
+            { 
+                "title": "Microserviços Financeiros", 
+                "description": "Arquitetura de microsserviços para sistema financeiro com circuit breaker e fallback patterns.",
+                "image": "https://picsum.photos/400/250?random=6",
+                "alt": "Financial microservices architecture",
+                "tags": ["Java", "Spring Cloud", "Docker", "Kubernetes"],
+                "link": "#"
+            }
+        ];
+
+        const reviewsData = [
+            { 
+                "name": "Maria Silva", 
+                "role": "Tech Lead",
+                "company": "TechCorp",
+                "rating": 5,
+                "comment": "Excelente desenvolvedor backend! Entregou uma arquitetura de microsserviços que escalou perfeitamente para nossos 100k usuários.",
+                "date": "2024-01-15",
+                "avatar": "https://picsum.photos/100?random=7"
+            },
+            { 
+                "name": "Carlos Santos", 
+                "role": "CTO",
+                "company": "StartupXYZ",
+                "rating": 4,
+                "comment": "Profissional muito competente nas tecnologias .NET e Java. Contribuiu significativamente para a otimização do nosso sistema legado.",
+                "date": "2024-02-20",
+                "avatar": "https://picsum.photos/100?random=8"
+            },
+            { 
+                "name": "Ana Oliveira", 
+                "role": "Recrutadora Sênior",
+                "company": "TechRecruit",
+                "rating": 5,
+                "comment": "Perfil técnico excepcional com ótima comunicação. Recomendo para qualquer vaga de backend sênior.",
+                "date": "2024-03-10",
+                "avatar": "https://picsum.photos/100?random=9"
+            }
+        ];
+
+        // Reusable Render Functions
+        function renderNavigation(items) {
+            return items.map(item => 
+                `<li><a href="${item.href}" class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center space-x-2">
+                    <i class="${item.icon}"></i>
+                    <span>${item.label}</span>
+                </a></li>`
+            ).join("");
+        }
+
+        function renderServices(items) {
+            return items.map(item => 
+                `<div class="card-hover bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="w-14 h-14 ${item.color} rounded-lg flex items-center justify-center mb-6">
+                        <i class="${item.icon} text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-dark">${item.title}</h3>
+                    <p class="text-gray-600">${item.description}</p>
+                </div>`
+            ).join("");
+        }
+
+        function renderProjects(items) {
+            return items.map(item => 
+                `<div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                    <img src="${item.image}" alt="${item.alt}" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-dark">${item.title}</h3>
+                        <p class="text-gray-600 mb-4">${item.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${item.tags.map(tag => `<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">${tag}</span>`).join("")}
+                        </div>
+                        <a href="${item.link}" class="inline-flex items-center text-primary font-semibold hover:text-secondary">
+                            Ver Detalhes
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>`
+            ).join("");
+        }
+
+        function renderReviews(items) {
+            return items.map(item => {
+                const stars = Array.from({length: 5}, (_, i) => 
+                    `<i class="fas fa-star ${i < item.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`
+                ).join("");
+                
+                return `<div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="flex items-start space-x-4 mb-4">
+                        <img src="${item.avatar}" alt="${item.name}" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold text-dark">${item.name}</h4>
+                            <p class="text-gray-600 text-sm">${item.role} • ${item.company}</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">${stars}</div>
+                    <p class="text-gray-700 mb-4">"${item.comment}"</p>
+                    <p class="text-gray-500 text-sm">${new Date(item.date).toLocaleDateString('pt-BR')}</p>
+                </div>`;
+            }).join("");
+        }
+
+        function renderRatingStars() {
+            return Array.from({length: 5}, (_, i) => 
+                `<button type="button" data-rating="${i + 1}" class="text-2xl text-gray-300 hover:text-yellow-400 transition-colors">
+                    <i class="fas fa-star"></i>
+                </button>`
+            ).join("");
+        }
+
+        // DOM Initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            // Render navigation
+            document.getElementById("nav-menu").innerHTML = renderNavigation(navigationItems);
+            document.getElementById("mobile-nav-menu").innerHTML = renderNavigation(navigationItems);
+            
+            // Render services
+            document.getElementById("services-grid").innerHTML = renderServices(servicesData);
+            
+            // Render projects
+            document.getElementById("projects-grid").innerHTML = renderProjects(projectsData);
+            
+            // Render reviews
+            document.getElementById("reviews-container").innerHTML = 
+                `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${renderReviews(reviewsData)}</div>`;
+            
+            // Render rating stars
+            document.getElementById("rating-stars").innerHTML = renderRatingStars();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            
+            mobileMenuBtn.addEventListener("click", function() {
+                mobileMenu.classList.toggle("hidden");
+            });
+            
+            // Smooth scrolling for navigation links
+            document.addEventListener("click", function(event) {
+                const link = event.target.closest("a[href^='#']");
+                if (!link) return;
+                
+                const href = link.getAttribute("href");
+                if (href === "#") return;
+                
+                event.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+            
+            // Review modal functionality
+            const addReviewBtn = document.getElementById("add-review-btn");
+            const reviewModal = document.getElementById("review-modal");
+            const closeModalBtn = document.getElementById("close-modal");
+            const reviewForm = document.getElementById("review-form");
+            const ratingStars = document.querySelectorAll("#rating-stars button");
+            const ratingValue = document.getElementById("rating-value");
+            
+            addReviewBtn.addEventListener("click", function() {
+                reviewModal.classList.remove("hidden");
+            });
+            
+            closeModalBtn.addEventListener("click", function() {
+                reviewModal.classList.add("hidden");
+            });
+            
+            // Rating stars interaction
+            ratingStars.forEach(star => {
+                star.addEventListener("click", function() {
+                    const rating = parseInt(this.getAttribute("data-rating"));
+                    ratingValue.value = rating;
+                    
+                    ratingStars.forEach((s, index) => {
+                        const starIcon = s.querySelector("i");
+                        if (index < rating) {
+                            starIcon.classList.remove("text-gray-300");
+                            starIcon.classList.add("text-yellow-400");
+                        } else {
+                            starIcon.classList.remove("text-yellow-400");
+                            starIcon.classList.add("text-gray-300");
+                        }
+                    });
+                });
+            });
+            
+            // Review form submission
+            reviewForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById("reviewer-name").value;
+                const role = document.getElementById("reviewer-role").value;
+                const rating = parseInt(ratingValue.value);
+                const comment = document.getElementById("review-comment").value;
+                
+                const newReview = {
+                    name: name,
+                    role: role,
+                    company: "Recrutador",
+                    rating: rating,
+                    comment: comment,
+                    date: new Date().toISOString().split('T')[0],
+                    avatar: `https://picsum.photos/100?random=${Math.floor(Math.random() * 100)}`
+                };
+                
+                reviewsData.unshift(newReview);
+                document.getElementById("reviews-container").innerHTML = 
+                    `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">${renderReviews(reviewsData)}</div>`;
+                
+                reviewForm.reset();
+                reviewModal.classList.add("hidden");
+                
+                // Reset stars
+                ratingValue.value = 5;
+                ratingStars.forEach((s, index) => {
+                    const starIcon = s.querySelector("i");
+                    if (index < 5) {
+                        starIcon.classList.remove("text-gray-300");
+                        starIcon.classList.add("text-yellow-400");
+                    }
+                });
+                
+                alert("Avaliação adicionada com sucesso! Obrigado pelo feedback.");
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById("contact-form");
+            contactForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const message = document.getElementById("message").value;
+                
+                // In a real application, you would send this data to a backend
+                console.log("Contact form submitted:", { name, email, message });
+                
+                alert("Mensagem enviada com sucesso! Entrarei em contato em breve.");
+                contactForm.reset();
+            });
+            
+            // Copy email functionality
+            const copyEmailBtn = document.getElementById("copy-email");
+            const emailDisplay = document.getElementById("email-display");
+            
+            copyEmailBtn.addEventListener("click", function() {
+                const email = emailDisplay.textContent;
+                navigator.clipboard.writeText(email).then(() => {
+                    const originalText = copyEmailBtn.innerHTML;
+                    copyEmailBtn.innerHTML = '<i class="fas fa-check mr-1"></i>Copiado!';
+                    setTimeout(() => {
+                        copyEmailBtn.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
+            
+            // Close modal on outside click
+            reviewModal.addEventListener("click", function(e) {
+                if (e.target === reviewModal) {
+                    reviewModal.classList.add("hidden");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
