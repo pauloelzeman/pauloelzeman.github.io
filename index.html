@@ -28,20 +28,22 @@
         }
     </script>
     <style>
-        .marquee {
-    display: flex;
-    width: max-content;
-    animation: marqueeScroll 20s linear infinite;
-}
-
-@keyframes marqueeScroll {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
+        .animate-marquee {
+            animation: marquee 8s linear infinite;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(37, 99, 235, 0.6);
+        }
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .animate-marquee {
+            animation: marquee 8s linear infinite;
+        }
         html {
             scroll-behavior: smooth;
         }
@@ -69,7 +71,11 @@
                     <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-lg">PE</span>
                     </div>
-                    <span class="text-xl font-bold text-dark">Paulo Elzeman</span>
+                    <div class="overflow-hidden w-48">
+                        <span class="text-xl font-bold text-dark inline-block whitespace-nowrap animate-marquee">
+                            Paulo Elzeman • Paulo Elzeman • Paulo Elzeman •
+                        </span>
+                    </div>
                 </div>
                 
                 <ul id="nav-menu" class="hidden md:flex space-x-8"></ul>
@@ -244,7 +250,7 @@
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; Copyright © 2026 Paulo Elzeman. Todos os direitos reservados.</p>
+                <p>&copy; 2024 BackendDev Portfolio. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -488,14 +494,7 @@
         // DOM Initialization
         document.addEventListener("DOMContentLoaded", function() {
             // Render navigation
-            const navMarquee = document.getElementById("nav-marquee");
-
-// duplicamos os itens para efeito infinito
-const navContent = renderNavigation(navigationItems);
-navMarquee.innerHTML = navContent + navContent;
-
-// adiciona classe de animação
-navMarquee.classList.add("marquee");
+            document.getElementById("nav-menu").innerHTML = renderNavigation(navigationItems);
             document.getElementById("mobile-nav-menu").innerHTML = renderNavigation(navigationItems);
             
             // Render services
